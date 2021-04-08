@@ -1,4 +1,4 @@
-# talk-intro-rxjava
+# talk-intro-reactive-java
 Este repositorio está asociado a la charla introductoria a la programación reactiva en Java para el Chapter Backend de ADL.
 
 ![Logo vikingos](./doc/assets/logo_vikingos.jpeg)
@@ -8,7 +8,6 @@ Este repositorio está asociado a la charla introductoria a la programación rea
 - [Introducción](#Introducción)
 - [Motivación](#Motivación)
 - [Contexto](#Contexto)
-- [Conceptos básicos](#Conceptos-básicos)
 - [Tutorial](#Tutorial)
 - [Recursos adicionales](#Recursos-adicionales)
 - [Referencias](#Referencias)
@@ -33,18 +32,54 @@ La charla tiene una duración de ~50 min.
 
 ## 2. Motivación
 
+Revisar la presentación.
+
 ## 3. Contexto
 
-## 4. Conceptos básicos
+Revisar la presentación.
 
-## 5. Tutorial
+## 4. Tutorial
 
-### 5.1 Instalación y configuración
+Los conceptos que se revisarán en esta sección son transversales a la mayoria de bibliotecas que proveen capacidades y/o habilitan el uso de _Streams_ reactivos. 
 
-### 5.2 Revisión de los operadores
+Una funcionalidad interesantes es la de poder "encadenar" métodos, permitiendo así la conversión compleja de de flujos de datos [1].
 
-## 6. Recursos adicionales
+### 4.1 Instalación y configuración
 
-## 7. Referencias
+Para este tutorial se recomienda tener instalado:
 
 
+- Java 8: se trabajará con Java 8+ por lo tanto es esencial tenerlo instalado. Si requiere tener varias versiones del JDK en su maquina puede usar [JENV](https://github.com/jenv/jenv).
+
+```sh
+$ java -version
+java version "1.8.0_101"
+Java(TM) SE Runtime Environment (build 1.8.0_101-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
+```
+
+- Un IDE para Java. Se recomienda IntelliJ IDEA.
+
+#### Pasos para ejecutar este proyecto:
+
+- Clone este proyecto (si todavia no lo ha hecho)
+
+```sh
+git clone https://github.com/alejandro56664-adl/talk-intro-reactive-java.git
+```
+
+- Importe el proyecto ```demo_reactor```en InteliJ IDEA como un proyecto tipo Gradle.
+
+- Ejecute la prueba ```ReactorTest.java```
+
+
+
+### 4.2 Revisión de los operadores
+
+## 5. Recursos adicionales
+
+## 6. Referencias
+
+1. [Adam L. Davis,  Reactive Streams in Java, 2019](https://learning.oreilly.com/library/view/reactive-streams-in/9781484241769/), https://doi.org/10.1007/978-1-4842-4176-9
+
+2. [Tomasz Nurkiewicz, Ben Christensen, Reactive Programming with RxJava, 2016](https://learning.oreilly.com/library/view/reactive-programming-with/9781491931646/)

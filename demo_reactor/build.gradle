@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'co.vikingos.spikes'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // import BOM
+    implementation platform('io.projectreactor:reactor-bom:2020.0.5')
+
+    // add dependencies without a version number
+    implementation 'io.projectreactor:reactor-core'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
