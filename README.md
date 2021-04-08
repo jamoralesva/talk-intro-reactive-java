@@ -23,14 +23,14 @@ En este repositorio hay un pequeño demo en Java útil para introducirse a los c
 
 La charla tiene una duración de ~50 min.
 
-  - Conceptos básicos: ~15 min
-  - Tutorial: ~20 min
-  - Buenas prácticas y recomendaciones: ~15 min
+  - Motivación y contexto: ~25 min
+  - Tutorial: ~25 min
   - Quiz: ~5 min (solo presentación en vivo)
 
 - En este repo encontrará:
   - Instalación y configuración del proyecto
   - como ejecutar los ejemplos
+  - Documentación
 
 ## 2. Motivación
 
