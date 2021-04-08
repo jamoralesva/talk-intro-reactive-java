@@ -1,11 +1,14 @@
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import reactor.core.publisher.Flux;
 import reactor.util.function.Tuples;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ReactorTest {
   @Test
@@ -34,5 +37,31 @@ public class ReactorTest {
     System.out.println(fibonacciSeries);
     assertEquals( 7778742049L, fibonacciSeries.get(size-1).longValue());
   }
+
+@Test
+public void testFibonacciFluxSink() {
+    Flux<Long> fibonacciGenerator = Flux.create(e -> {
+        long current = 1, prev = 0;
+        AtomicBoolean stop = new AtomicBoolean(false);
+        e.onDispose(()->{
+            stop.set(true);
+            System.out.println("******* Stop Received ****** ");
+        });
+        while (current > 0) {
+            e.next(current);
+            System.out.println("generated " + current);
+            long next = current + prev;
+            prev = current;
+            current = next;
+        }
+        e.complete();
+    });
+    List<Long> fibonacciSeries = new LinkedList<>();
+    fibonacciGenerator.take(50).subscribe(t -> {
+        System.out.println("consuming " + t);
+        fibonacciSeries.add(t);
+    });
+    System.out.println(fibonacciSeries);
+}
 
 }
