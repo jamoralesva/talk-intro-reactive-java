@@ -18,19 +18,22 @@ Este repositorio está asociado a la charla introductoria a la programación rea
 
 En este repositorio hay un pequeño demo en Java útil para introducirse a los conceptos básicos de la programación reactiva, particularmente en Java.
 
-- La presentación la puede encontrar [aquí](https://drive.google.com/file/d/1Bae9VhLq6N49GKLRRBHnf0PjbP9wNPno/view?usp=sharing).
+- La presentación la puede encontrar [aquí](https://drive.google.com/file/d/11skHDerB4V3TzXS23E6nz1hK64JjUfts/view?usp=sharing).
 - El video de la presentación lo puede encontrar aquí: [TODO]()
 
 La charla tiene una duración de ~50 min.
 
   - Motivación y contexto: ~25 min
-  - Tutorial: ~25 min
+  - Conceptos básicos: ~20 min
+  - Revisión del repo: ~5 min
   - Quiz: ~5 min (solo presentación en vivo)
 
 - En este repo encontrará:
   - Instalación y configuración del proyecto
-  - como ejecutar los ejemplos
+  - Como ejecutar los ejemplos
   - Documentación
+  - Laboratorio prueba de carga Reactivo vs No Reactivo
+
 
 ## 2. Motivación
 
@@ -202,10 +205,52 @@ Flux.range(1, 64).flatMap(v ->
 Puede revisar los ejemplos un poco mas complejos del archivo ```ReactorTest.java```.
 
 
-
 ### 4.3 Revisión de los Operadores básicos
 
 TODO
+
+### 4.4 Prueba de desempeño
+
+Esta prueba esta basada en la realizada aquí: https://tech.willhaben.at/reactive-java-performance-comparison-c4d248c8d21f.
+
+Para realizar las pruebas es necesario tener [instalado K6](https://k6.io/docs/getting-started/installation/)
+
+En este caso el trabajo realizado fue convertir los proyectos a tipo Gradle, realizar las pruebas con K6.
+
+- (opcional) Importar los proyectos ```web_reactive```y ```web_standard```como proyectos tipo Gradle en IntelliJ IDEA.
+
+- Ejecutar el clúster local de casandra para pruebas (nos basamos en este excelente Blog https://digitalis.io/blog/apache-cassandra/containerized-cassandra-cluster-for-local-testing/):
+
+TODO
+
+- Primero ejecute ```web_standard```
+
+```$ ./gradlew run```
+
+- Verifique que el servicio haya levantado correctamente realizando consultas al servicio en el _endpoint_: 
+
+- Ahora inicie las pruebas de carga con K6.
+
+```TODO comando pruebas de carga```
+
+Este comando permite realizar varias pruebas y recopilar datos para el posterior análisis.
+
+- Ahora ejecute ```web_reactive```
+
+```$ ./gradlew run```
+
+- Verifique que el servicio haya levantado correctamente realizando consultas al servicio en el _endpoint_: 
+
+- Ahora inicie las pruebas de carga con K6.
+
+```TODO comando pruebas de carga```
+
+#### Análisis de los datos
+
+TODO
+
+
+
 
 ## 5. Recursos adicionales
 

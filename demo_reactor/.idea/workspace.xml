@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4f68415-adeb-436e-9037-a32508a071a6" name="Default Changelist" comment="" />
+    <list default="true" id="d4f68415-adeb-436e-9037-a32508a071a6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="Gradle.BasicsTest.FluxBackPressureTest">
+  <component name="RunManager" selected="Gradle.BasicsTest.FluxBasicTest">
     <configuration name="BasicsTest.FluxBackPressureTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -73,12 +75,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BasicsTest.FluxHotTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="BasicsTest.FluxBasicTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;BasicsTest.FluxHotTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;BasicsTest.FluxBasicTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -115,12 +117,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="OperatorsTest.Flux01Test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ReactorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;OperatorsTest.Flux01Test&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ReactorTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -159,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.BasicsTest.FluxBasicTest" />
+        <item itemvalue="Gradle.ReactorTest" />
         <item itemvalue="Gradle.BasicsTest.FluxBackPressureTest" />
         <item itemvalue="Gradle.ReactorTest.testFibonacciFluxSink" />
         <item itemvalue="Gradle.BasicsTest.FluxTest" />
-        <item itemvalue="Gradle.BasicsTest.FluxHotTest" />
-        <item itemvalue="Gradle.OperatorsTest.Flux01Test" />
       </list>
     </recent_temporary>
   </component>
