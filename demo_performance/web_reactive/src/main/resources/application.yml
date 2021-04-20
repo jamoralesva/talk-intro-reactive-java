@@ -1,8 +1,0 @@
-logging.level.root: info
-
-server:
-  tomcat:
-    max-threads: 2
-
-cassandraNodes: 192.168.65.3
-keyspace:

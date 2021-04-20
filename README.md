@@ -215,13 +215,21 @@ Esta prueba esta basada en la realizada aquí: https://tech.willhaben.at/reactiv
 
 Para realizar las pruebas es necesario tener [instalado K6](https://k6.io/docs/getting-started/installation/)
 
-En este caso el trabajo realizado fue convertir los proyectos a tipo Gradle, realizar las pruebas con K6.
+En este caso el trabajo realizado fue convertir los proyectos a tipo Gradle, modificar el realizar las pruebas con K6.
 
-- (opcional) Importar los proyectos ```web_reactive```y ```web_standard```como proyectos tipo Gradle en IntelliJ IDEA.
+- (opcional) Importar los proyectos ```web_reactive``` y ```web_standard``` como proyectos tipo Gradle en IntelliJ IDEA.
 
-- Ejecutar el clúster local de casandra para pruebas (nos basamos en este excelente Blog https://digitalis.io/blog/apache-cassandra/containerized-cassandra-cluster-for-local-testing/):
+- Ejecutar el mongodb local:
 
-TODO
+```sh
+docker run --name test-mongo -p 27017:27017 mongo:4.2
+```
+
+**Nota**
+
+- Debe existir una base de datos llamada 'test' para ejecutar las pruebas.
+
+- Siempre ejecute primero el proyecto ```web_standard``` debido a que este tiene configurado [Mongock](https://www.mongock.io/) para hacer migraciones, en este caso para poblar la base de datos con datos de prueba.
 
 - Primero ejecute ```web_standard```
 

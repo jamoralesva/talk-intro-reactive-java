@@ -13,7 +13,14 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
+	compile "com.github.cloudyrock.mongock:mongock-bom:4.3.8"
+	compile "com.github.cloudyrock.mongock:mongock-spring-v5:4.3.8"
+	compile "com.github.cloudyrock.mongock:mongodb-springdata-v3-driver:4.3.8"
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
