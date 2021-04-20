@@ -233,11 +233,13 @@ docker run --name test-mongo -p 27017:27017 mongo:4.2
 
 - Siempre ejecute primero el proyecto ```web_standard``` debido a que este tiene configurado [Mongock](https://www.mongock.io/) para hacer migraciones, en este caso para poblar la base de datos con datos de prueba.
 
-- Primero ejecute ```web_standard```
+#### Ejecución 'web_standard'
+
+- Ejecución del servicio por el puerto 8080
 
 ```$ ./gradlew run```
 
-- Verifique que el servicio haya levantado correctamente realizando consultas al servicio en el _endpoint_: 
+Verifique que el servicio haya levantado correctamente realizando consultas al servicio en el _endpoint_: 
 
 - Ahora inicie las pruebas de carga con K6.
 
@@ -245,15 +247,7 @@ docker run --name test-mongo -p 27017:27017 mongo:4.2
 
 Este comando permite realizar varias pruebas y recopilar datos para el posterior análisis.
 
-- Ahora ejecute ```web_reactive```
-
-```$ ./gradlew run```
-
-- Verifique que el servicio haya levantado correctamente realizando consultas al servicio en el _endpoint_: 
-
-- Ahora inicie las pruebas de carga con K6.
-
-```TODO comando pruebas de carga```
+- Replique los mismos pasos con ```web_reactive```
 
 #### Análisis de los datos
 
@@ -271,3 +265,4 @@ TODO
 2. [Rahul Sharma, Hands-On Reactive Programming with Reactor, 2018](https://learning.oreilly.com/library/view/hands-on-reactive-programming/9781789135794/)
 
 3. [Tomasz Nurkiewicz, Ben Christensen, Reactive Programming with RxJava, 2016](https://learning.oreilly.com/library/view/reactive-programming-with/9781491931646/)
+4. https://programmingtechie.com/2021/01/06/spring-data-mongodb-tutorial/#Performing_Migrations_using_Mongock
