@@ -211,15 +211,25 @@ TODO
 
 ### 4.4 Prueba de desempeño
 
-Esta prueba esta basada en la realizada aquí: https://tech.willhaben.at/reactive-java-performance-comparison-c4d248c8d21f.
+Esta prueba esta basada en la realizada aquí: [reactive-java-performance-comparison](https://tech.willhaben.at/reactive-java-performance-comparison-c4d248c8d21f).
 
 Para realizar las pruebas es necesario tener [instalado K6](https://k6.io/docs/getting-started/installation/)
 
+<<<<<<< HEAD
 En este caso el trabajo realizado fue convertir los proyectos a tipo Gradle, modificar el realizar las pruebas con K6.
+=======
+En este caso el trabajo realizado fue convertir los proyectos a tipo Gradle, realizar las pruebas de carga con K6.
+
+#### Instrucciones para repetir la prueba
+>>>>>>> cbae20697632a9b21a23f2b9a1777dbd929d3c4c
 
 - (opcional) Importar los proyectos ```web_reactive``` y ```web_standard``` como proyectos tipo Gradle en IntelliJ IDEA.
 
+<<<<<<< HEAD
 - Ejecutar el mongodb local:
+=======
+- Ejecutar el clúster local de casandra para pruebas (nos basamos en este excelente Blog [digitalis.io](https://digitalis.io/blog/apache-cassandra/containerized-cassandra-cluster-for-local-testing/).
+>>>>>>> cbae20697632a9b21a23f2b9a1777dbd929d3c4c
 
 ```sh
 docker run --name test-mongo -p 27017:27017 mongo:4.2
