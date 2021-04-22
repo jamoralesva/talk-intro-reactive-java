@@ -211,7 +211,7 @@ TODO
 
 ### 4.4 Prueba de desempeño
 
-Esta prueba esta basada en la realizada aquí: [reactive-java-performance-comparison](https://tech.willhaben.at/reactive-java-performance-comparison-c4d248c8d21f).
+Esta prueba esta basada en la realizada aquí: [reactive-java-performance-comparison](https://tech.willhaben.at/reactive-java-performance-comparison-c4d248c8d21f), usando la implementación con MongoDB explicada aquí [Spring Data MongoDB](https://programmingtechie.com/2021/01/06/spring-data-mongodb-tutorial/).
 
 Para realizar las pruebas es necesario tener [instalado K6](https://k6.io/docs/getting-started/installation/)
 
@@ -233,21 +233,41 @@ docker run --name test-mongo -p 27017:27017 mongo:4.2
 
 - Siempre ejecute primero el proyecto ```web_standard``` debido a que este tiene configurado [Mongock](https://www.mongock.io/) para hacer migraciones, en este caso para poblar la base de datos con datos de prueba.
 
+
 #### Ejecución 'web_standard'
 
-- Ejecución del servicio por el puerto 8080
 
-```$ ./gradlew run```
+- Ejecución del servicio dentro de la carpeta ```demo_performance/web_standard```:
+
+```
+./gradlew bootRun
+```
 
 Verifique que el servicio haya levantado correctamente realizando consultas al servicio en el _endpoint_: 
 
-- Ahora inicie las pruebas de carga con K6.
+- Ahora inicie las pruebas de carga con K6. Dentro de la carpeta ```demo_performance/k6```:
 
-```TODO comando pruebas de carga```
+```
+k6 run script.js --out csv=web_standard_result.csv
+```
 
 Este comando permite realizar varias pruebas y recopilar datos para el posterior análisis.
 
-- Replique los mismos pasos con ```web_reactive```
+Detenga el servicio.
+
+#### Ejecución 'web_standard'
+
+- Ejecución del servicio dentro de la carpeta ```demo_performance/web_reactive```:
+
+```
+./gradlew bootRun
+```
+
+-  inicie las pruebas de carga con K6. Dentro de la carpeta ```demo_performance/k6```:
+
+```
+k6 run script.js --out csv=web_reactive_result.csv
+```
 
 #### Análisis de los datos
 

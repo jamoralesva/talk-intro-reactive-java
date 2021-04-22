@@ -11,16 +11,14 @@ import java.util.List;
 @ChangeLog
 public class DatabaseChangeLog {
 
-  @ChangeSet(order = "001", id = "seedDatabase", author = "jamv")
-  public void seedDatabase(TestDataRepository repository) {
-    List<TestData> expenseList = new ArrayList<>();
-    expenseList.add(createItem("Piter Albeiro", BigDecimal.valueOf(40)));
-    expenseList.add(createItem("Ricardo Quevedo", BigDecimal.valueOf(60)));
-    expenseList.add(createItem("Polilla", BigDecimal.valueOf(10)));
-    expenseList.add(createItem("La Bruja Dioselina", BigDecimal.valueOf(20)));
-    expenseList.add(createItem("Otro", BigDecimal.valueOf(30)));
+  static String[] first_names = {"Piter", "Yeison", "Rigoberto", "Albeiro", "Eider", "Didier", "Stevens", "Edinson", "Yonier", "Esneider"};
+  static String[] last_names = {"Paniagua", "Pechene", "Anacona", "Cristancho", "Chacano", "Tumerque", "Cali", "Guaman", "Guaita", "Gonzalez"};
 
-    repository.insert(expenseList);
+  @ChangeSet(order = "001", id = "seedDatabase_random", author = "jamv")
+  public void seedDatabase(TestDataRepository repository) {
+    for (int i = 0; i < 1000; i++) {
+      repository.insert(generate100());
+    }
   }
 
   private TestData createItem(String name, BigDecimal age) {
@@ -28,5 +26,26 @@ public class DatabaseChangeLog {
     testData.setAge(age);
     testData.setName(name);
     return testData;
+  }
+  private int random(){
+    return (int)(Math.random() * 10);
+  }
+
+  private String generateName(){
+     return first_names[random()] + " " +
+            first_names[random()] + " " +
+            last_names[random()] + " " + last_names[random()];
+  }
+
+  private TestData randomItem(){
+    return createItem(generateName(), BigDecimal.valueOf(random()));
+  }
+
+  private List<TestData> generate100(){
+    List<TestData> list = new ArrayList<>();
+    for (int i = 0; i < 100; i++) {
+      list.add(randomItem());
+    }
+    return list;
   }
 }
