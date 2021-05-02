@@ -207,7 +207,70 @@ Puede revisar los ejemplos un poco mas complejos del archivo ```ReactorTest.java
 
 ### 4.3 Revisión de los Operadores básicos
 
-TODO
+#### 4.3.1 Operadores para pre-procesamiento
+
+Fuente: https://projectreactor.io/docs/core/release/api/
+
+##### flatMap(mapper)
+
+![flatMap](./doc/assets/operators/flatMapForFlux.svg)
+
+##### filter(predicate)
+
+![filter](./doc/assets/operators/filterMapForFlux.svg)
+
+##### doOnNext(Consumidor)
+
+![doOnNext](./doc/assets/operators/doOnNextForFlux.svg)
+
+##### handler(Biconsumidor)
+
+#### 4.3.2 Operadores para manejo de contrapresión
+
+##### delay(duration)
+
+![delay](./doc/assets/operators/delayElements.svg)
+
+##### window(windowingTimespan)
+
+![window](./doc/assets/operators/windowWithTimespan.svg)
+
+##### drop
+
+![drop](./doc/assets/operators/onBackpressureDrop.svg)
+
+##### buffer
+
+![buffer](./doc/assets/operators/onBackpressureBuffer.svg)
+
+#### 4.3.2 Operadores para manejo de errores
+
+##### onErrorReturn
+
+Devolver un valor
+
+![onErrorReturn](./doc/assets/operators/onErrorReturnForFlux.svg)
+
+
+##### onErrorMap
+
+Mapear una excepción a otra excepción personalizada
+
+![ onErrorMap](./doc/assets/operators/onErrorMapForFlux.svg)
+
+##### onErrorResume
+
+Mapear un flujo y terminar
+
+![onErrorResume](./doc/assets/operators/onErrorResumeForFlux.svg)
+
+##### onErrorContinue
+
+Reportar error a una función y continuar
+
+![onErrorContinue](./doc/assets/operators/onErrorContinueForFlux.svg)
+
+
 
 ### 4.4 Prueba de desempeño
 
