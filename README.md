@@ -354,8 +354,7 @@ Devolver un valor
 
 ![onErrorReturn](./doc/assets/operators/onErrorReturnForFlux.svg)
 
-
-##### onErrorMap
+##### onErrorMap
 
 Mapear una excepción a otra excepción personalizada
 
