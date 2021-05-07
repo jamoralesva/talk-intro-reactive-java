@@ -207,6 +207,8 @@ Puede revisar los ejemplos un poco mas complejos del archivo ```ReactorTest.java
 
 ### 4.3 Revisión de los Operadores básicos
 
+**Importante**: En el proyecto de Java ```demo_reactor```los ejemplos mostrados a continuación estan implementados en forma de pruebas, sin embargo esa no es la manera correcta de realizar pruebas de programas reactivos, mas adelante en la sección "Pruebas Unitarias" se hará una pequeña introducción a _StepVerifier_.
+
 #### 4.3.1 Operadores para pre-procesamiento
 
 Fuente: https://projectreactor.io/docs/core/release/api/
@@ -215,15 +217,45 @@ Fuente: https://projectreactor.io/docs/core/release/api/
 
 ![flatMap](./doc/assets/operators/flatMapForFlux.svg)
 
-##### filter(predicate)
-
-![filter](./doc/assets/operators/filterMapForFlux.svg)
-
 ##### doOnNext(Consumidor)
 
 ![doOnNext](./doc/assets/operators/doOnNextForFlux.svg)
 
-##### handler(Biconsumidor)
+```java
+@Test
+  public void flatMapTest(){
+    List<Integer> squares = new ArrayList<>();
+    Flux.range(1, 64)
+        .flatMap(v ->
+            Mono.just(v)
+                .subscribeOn(Schedulers.newSingle("comp")) //ejecuta la tarea en nuevo hilo
+                .map(w -> w * w))
+        .doOnError(ex -> ex.printStackTrace())
+        .doOnNext(i -> System.out.println(i))
+        .doOnComplete(() -> System.out.println("Completed"))
+        .subscribeOn(Schedulers.immediate())
+        .subscribe(squares::add);
+
+    System.out.println(squares);
+
+  }
+```
+##### filter(predicate)
+
+![filter](./doc/assets/operators/filterForFlux.svg)
+
+```java
+  @Test
+  public void filterTest(){
+    FibonacciGenerator.generateFlux()
+                      .take(10)
+                      .filter(a -> a%2 == 0) //probamos la paridad
+                      .subscribe(t -> {
+                          System.out.println(t);
+                      });
+  }
+```
+
 
 #### 4.3.2 Operadores para manejo de contrapresión
 
@@ -231,17 +263,88 @@ Fuente: https://projectreactor.io/docs/core/release/api/
 
 ![delay](./doc/assets/operators/delayElements.svg)
 
-##### window(windowingTimespan)
+```java
 
-![window](./doc/assets/operators/windowWithTimespan.svg)
-
+  @Test
+  public void delayTest() throws InterruptedException {
+    FibonacciGenerator.generateFlux()
+        .take(10)
+        .delayElements(Duration.ofSeconds(1))
+        .subscribe(t -> {
+          System.out.println(t);
+        });
+    //probar poniendo este y quitandolo
+    Thread.sleep(10000);
+  }
+}
+```
 ##### drop
 
 ![drop](./doc/assets/operators/onBackpressureDrop.svg)
 
+```java
+@Test
+  public void dropTest() throws InterruptedException {
+    BackPressureGenerator
+        .generate(1000, OverflowStrategy.DROP)
+        .onBackpressureDrop(i -> System.out.println(Thread.currentThread().getName() + " | DROPPED = " + i))
+        .subscribeOn(Schedulers.boundedElastic())
+        .publishOn(Schedulers.boundedElastic())
+        .subscribe(i -> {
+            // Se procesa el valor recibido
+            System.out.println(Thread.currentThread().getName() + " | Received = " + i);
+            // simular un suscriptor lento
+            try {
+              Thread.sleep(500);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+        });
+
+    // subscribeOn & publishOn - Pone el suscriptor y publicador en diferentes hilos
+
+    // se mantiene el hilo principal despierto por 100 seconds.
+    Thread.sleep(100000);
+
+  }
+```
+
 ##### buffer
 
 ![buffer](./doc/assets/operators/onBackpressureBuffer.svg)
+
+```java
+@Test
+  public void bufferTest() throws InterruptedException {
+    BackPressureGenerator
+        .generate(100000, OverflowStrategy.BUFFER)
+        .subscribeOn(Schedulers.elastic())
+        .publishOn(Schedulers.elastic())
+        .onBackpressureBuffer(2)
+        .subscribe(
+          i -> {
+            // Se procesa el valor recibido
+            System.out.println(Thread.currentThread().getName() + " | Received = " + i);
+            // simular un suscriptor lento
+            try {
+              Thread.sleep(500);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          },
+          e -> {
+            // Process error
+            System.err.println(Thread.currentThread().getName() + " | Error = " + e.getClass().getSimpleName() + " " + e.getMessage());
+          });
+
+
+    // subscribeOn & publishOn - Pone el suscriptor y publicador en diferentes hilos
+
+    // se mantiene el hilo principal despierto por 100 seconds.
+    Thread.sleep(100000);
+
+  }
+```
 
 #### 4.3.2 Operadores para manejo de errores
 
@@ -266,13 +369,18 @@ Mapear un flujo y terminar
 
 ##### onErrorContinue
 
-Reportar error a una función y continuar
+Reportar error a una función y continua
 
-![onErrorContinue](./doc/assets/operators/onErrorContinueForFlux.svg)
+![onErrorContinue](./doc/assets/operators/onErrorContinue.svg)
+
+### 4.4 Pruebas Unitarias
+
+Debido a la naturaleza asincróna de los flujos reactivos, se precisa de herramientas para la realización de pruebas unitarias. La principal y mas utilizada proporcianada por el equipo detras de Reactor es _StepVerifier_ con cuya API se puede definir expectativas de los elementos publicados en términos de **qué elementos esperamos y qué sucede cuando se completa nuestra transmisión**.
+
+Para revisar las pruebas abra el proyecto ```demo_reactor```y ejecute las pruebas en el archivo ```StepVerifierDemo.java```
 
 
-
-### 4.4 Prueba de desempeño
+### 4.5 Prueba de desempeño
 
 Esta prueba esta basada en la realizada aquí: [reactive-java-performance-comparison](https://tech.willhaben.at/reactive-java-performance-comparison-c4d248c8d21f), usando la implementación con MongoDB explicada aquí [Spring Data MongoDB](https://programmingtechie.com/2021/01/06/spring-data-mongodb-tutorial/).
 
@@ -338,8 +446,9 @@ TODO
 
 
 
+## 5. Pensamientos finales
 
-## 5. Recursos adicionales
+Este repo es un trabajo en progreso y eventualmente se llenará de recomendaciones, buenas practicas y probablemente una narración mas fluida, con el tiempo se irá puliendo para brindarle al lector una introducción agradable y útil a la programación reactiva con Java, por ese motivo, si encuentra oportunidades de mejora (que las hay) por favor no dude en comunicarmelas, estaré muy agradecido con usted por sus recomendaciones.
 
 ## 6. Referencias
 
@@ -349,3 +458,7 @@ TODO
 
 3. [Tomasz Nurkiewicz, Ben Christensen, Reactive Programming with RxJava, 2016](https://learning.oreilly.com/library/view/reactive-programming-with/9781491931646/)
 4. https://programmingtechie.com/2021/01/06/spring-data-mongodb-tutorial/#Performing_Migrations_using_Mongock
+
+5. [Reactor basics with example backpressure](https://itsallbinary.com/reactor-basics-with-example-backpressure-overflow-drop-error-latest-ignore-buffer-good-for-beginners/)
+
+6. [Reactive Streams Step Verifier](https://www.baeldung.com/reactive-streams-step-verifier-test-publisher)
