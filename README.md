@@ -7,12 +7,12 @@ Este repositorio está asociado a la charla introductoria a la programación rea
 
 ## Contenido
 
-- [Introducción](#Introducción)
-- [Motivación](#Motivación)
-- [Contexto](#Contexto)
-- [Tutorial](#Tutorial)
-- [Recursos adicionales](#Recursos-adicionales)
-- [Referencias](#Referencias)
+- [1. Introducción](#1-Introducción)
+- [2. Motivación](#2-Motivación)
+- [3. Contexto](#3-Contexto)
+- [4. Tutorial](#4-Tutorial)
+- [5. Pensamientos finales](#5-Pensamientos finales)
+- [6. Referencias](#6-Referencias)
 
 ## 1. Introducción
 
